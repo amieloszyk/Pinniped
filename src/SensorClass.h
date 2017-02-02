@@ -6,18 +6,16 @@ pressure and temperature.
 Created on January 21st, 2017
 */
 
-#include <SPI.h>
-
 class SensorClass{
 
     protected:
 
-        const int clockPin = 9;
+        int clockPin;
 
-        int calibrationWordOne;
-        int calibrationWordTwo;
-        int calibrationWordThree;
-        int calibrationWordFour;
+        unsigned int calibrationWordOne;
+        unsigned int calibrationWordTwo;
+        unsigned int calibrationWordThree;
+        unsigned int calibrationWordFour;
 
         long calibrationFactorOne;
         long calibrationFactorTwo;
@@ -26,20 +24,25 @@ class SensorClass{
         long calibrationFactorFive;
         long calibrationFactorSix;
 
+        int rawTemp;
+        int rawPress;
+
         void resetSensor();
         void setCalibrationWords();
         void setCalibrationFactors();
         int getRawTemp();
         int getRawPress();
 
-        float getRealTemp(int rawTemp);
-        float getRealPress(int rawPress);
+        float getRealTemp(int rawTempVal);
+        float getRealPress(int rawPressVal, int rawTempVal);
 
     public:
 
+        SensorClass();
         void setupSensor();
         void updateSensor();
         float getTemp();
         float getPress();
+        void printData();
 
-}
+};
