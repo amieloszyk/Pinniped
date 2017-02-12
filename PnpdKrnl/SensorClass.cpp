@@ -2,7 +2,7 @@
 
 #include <SPI.h>
 #include "arduino.h"
-#include "sensor.h"
+#include "SensorClass.h"
 
 SensorClass::SensorClass() {
     setupSensor();
@@ -50,8 +50,8 @@ void SensorClass::setCalibrationWords() {
     calibrationWordOne = calibrationWordOne << 8; //shift returned byte 
     inbyte1 = SPI.transfer(0x00); //send dummy byte to read second byte of word
     calibrationWordOne = calibrationWordOne | inbyte1; //combine first and second byte of word
-    Serial.print("Calibration word 1 =");
-    Serial.println(calibrationWordOne); 
+    //Serial.print("Calibration word 1 =");
+    //Serial.println(calibrationWordOne); 
 
     resetSensor();//resets the sensor
 
@@ -64,8 +64,8 @@ void SensorClass::setCalibrationWords() {
     calibrationWordTwo = calibrationWordTwo <<8;
     inbyte2 = SPI.transfer(0x00);
     calibrationWordTwo = calibrationWordTwo | inbyte2;
-    Serial.print("Calibration word 2 =");
-    Serial.println(calibrationWordTwo);   
+    //Serial.print("Calibration word 2 =");
+    //Serial.println(calibrationWordTwo);   
 
     resetSensor();//resets the sensor
 
